@@ -26,9 +26,7 @@
         android:id="@+id/etEmail"
         android:layout_width="347dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="116dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginTop="68dp"
         android:background="@drawable/input_background"
         android:drawableLeft="@drawable/ic_email"
         android:drawablePadding="10dp"
@@ -43,9 +41,8 @@
         android:paddingBottom="10dp"
         android:textColor="#FFFFFF"
         android:textColorHint="#C8B8B8"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="@id/textView"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
@@ -86,27 +83,30 @@
 
     <Button
         android:id="@+id/btnLogin"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="347dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="24dp"
+        android:layout_marginEnd="32dp"
         android:background="@drawable/button_background"
         android:text="Login"
-        app:layout_constraintEnd_toEndOf="@+id/etPass"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="@+id/etPass"
+        app:layout_constraintEnd_toEndOf="@+id/tvForgotPass"
+        app:layout_constraintHorizontal_bias="0.87"
+        app:layout_constraintStart_toStartOf="@+id/tvForgotPass"
         app:layout_constraintTop_toBottomOf="@+id/tvForgotPass" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
         android:gravity="center"
         android:orientation="horizontal"
         android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="@+id/btnLogin"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/btnLogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnLogin">
 
         <TextView

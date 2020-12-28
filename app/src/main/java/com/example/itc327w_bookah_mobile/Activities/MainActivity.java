@@ -1,8 +1,10 @@
-package com.example.itc327w_bookah_mobile;
+package com.example.itc327w_bookah_mobile.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.itc327w_bookah_mobile.R;
 
 public class MainActivity extends AppCompatActivity {
 

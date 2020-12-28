@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">ITC327W_Bookah_Mobile</string>
+    <string name="ivLogo_Description">Image of the app\'s logo</string>
+    <string name="loginWelcome_text">Welcome Back</string>
+    <string name="loginContinue_text">Login to continue</string>
+    <string name="phoneNumber_hint">Phone Number</string>
+    <string name="cbRememberMe_text">Remember Me</string>
+    <string name="btnForgetPassword_text">Forgot Password?</string>
+    <string name="btnLogin_text">Login</string>
+    <string name="registerAccount_text">No Account? Register here</string>
+    <string name="password_hint">Password</string>
+    <string name="registerWelcome_text">Welcome,</string>
+    <string name="firstName_hint">First Name</string>
+    <string name="lastName_hint">Last Name</string>
+    <string name="IDNumber_hint">ID Number</string>
+    <string name="email_hint">Email Address</string>
+    <string name="passwordConfirm_hint">Confirm Password</string>
+    <string name="btnRegister_text">Register</string>
+    <string name="haveAccount_text">Already registered? Login here</string>
 </resources>

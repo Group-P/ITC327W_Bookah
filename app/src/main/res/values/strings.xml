@@ -1,20 +1,39 @@
 <resources>
     <string name="app_name">ITC327W_Bookah_Mobile</string>
+
     <string name="ivLogo_Description">Image of the app\'s logo</string>
-    <string name="loginWelcome_text">Welcome Back</string>
-    <string name="loginContinue_text">Login to continue</string>
-    <string name="phoneNumber_hint">Phone Number</string>
-    <string name="cbRememberMe_text">Remember Me</string>
+
+    //Buttons
     <string name="btnForgetPassword_text">Forgot Password?</string>
     <string name="btnLogin_text">Login</string>
-    <string name="registerAccount_text">No Account? Register here</string>
-    <string name="password_hint">Password</string>
+    <string name="btnRegister_text">Register</string>
+
+    //Actual TextViews
+    <string name="loginWelcome_text">Welcome Back</string>
+    <string name="loginContinue_text">Login to continue</string>
+    <string name="cbRememberMe_text">Remember Me</string>
     <string name="registerWelcome_text">Welcome,</string>
+    <string name="registerAccount_text">No Account? Register here</string>
+    <string name="haveAccount_text">Already registered? Login here</string>
+
+    //Hints
+    <string name="phoneNumber_hint">Phone Number</string>
     <string name="firstName_hint">First Name</string>
     <string name="lastName_hint">Last Name</string>
     <string name="IDNumber_hint">ID Number</string>
     <string name="email_hint">Email Address</string>
     <string name="passwordConfirm_hint">Confirm Password</string>
-    <string name="btnRegister_text">Register</string>
-    <string name="haveAccount_text">Already registered? Login here</string>
+    <string name="password_hint">Password</string>
+
+    //Errors
+    <string name="email_error">Email Address Is Required!</string>
+    <string name="name_error">First Name Is Required!</string>
+    <string name="surname_error">Last Name Is Required!</string>
+    <string name="phoneNumber_error">Cellphone Is Required!</string>
+    <string name="idNumber_error">ID Number Is Required!</string>
+    <string name="password_error">Password Is Required!</string>
+    <string name="current_password_error">Current Password Is Required!</string>
+    <string name="password_confirmation_error">Password Confirmation Is Required!</string>
+    <string name="tvUser_text">User</string>
+
 </resources>

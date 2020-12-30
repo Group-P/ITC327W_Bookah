@@ -1,10 +1,12 @@
 package com.example.itc327w_bookah_mobile.Activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -13,9 +15,20 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.itc327w_bookah_mobile.Activities.SplashScreens.HelloSplash;
+import com.example.itc327w_bookah_mobile.AppUtilities.AppUtility;
+import com.example.itc327w_bookah_mobile.Common.Common;
+import com.example.itc327w_bookah_mobile.Model.User;
 import com.example.itc327w_bookah_mobile.R;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import io.paperdb.Paper;
 
 public class Login extends AppCompatActivity {
 
@@ -23,7 +36,7 @@ public class Login extends AppCompatActivity {
     Animation topAnimation;
     ImageView logo_image;
     TextInputLayout login_phoneNumber, login_password;
-    TextInputEditText et_loginPhoneNUmber, et_loginPassword;
+    TextInputEditText et_loginPhoneNumber, et_loginPassword;
     TextView tvRegisterAccount;
     CheckBox cb_StayLoggedIn;
     Button login_btn, btnReset;
@@ -38,7 +51,7 @@ public class Login extends AppCompatActivity {
         logo_image = findViewById(R.id.login_logo);
 
         login_phoneNumber = findViewById(R.id.login_phoneNumber);
-        et_loginPhoneNUmber = findViewById(R.id.et_loginPhoneNumber);
+        et_loginPhoneNumber = findViewById(R.id.et_loginPhoneNumber);
 
         login_password = findViewById(R.id.login_password);
         et_loginPassword = findViewById(R.id.et_loginPassword);
@@ -53,7 +66,7 @@ public class Login extends AppCompatActivity {
 
         //Functionality
 
-        /*Paper.init(this);
+        Paper.init(this);
 
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference table_user = database.getReference("User");
@@ -63,27 +76,27 @@ public class Login extends AppCompatActivity {
             public void onClick(View view) {
 
                 if (Common.isConnectedToInternet(getBaseContext())) {
-                    if (cb_StaySignedIn.isChecked()) {
-                        Paper.book().write(Common.USER_KEY, AppUtility.getInputText(et_loginCellphone));
+                    if (cb_StayLoggedIn.isChecked()) {
+                        Paper.book().write(Common.USER_KEY, AppUtility.getInputText(et_loginPhoneNumber));
                         Paper.book().write(Common.PWD_KEY, AppUtility.getInputText(et_loginPassword));
                     }
 
                     if (AppUtility.validateInput(new TextInputLayout[]{
-                                    login_cellphone, login_password
+                                    login_phoneNumber, login_password
                             }, getResources().getStringArray(R.array.signIn_errors),
-                            et_loginCellphone, et_loginPassword)) {
+                            et_loginPhoneNumber, et_loginPassword)) {
                         table_user.addValueEventListener(new ValueEventListener() {
 
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                if (dataSnapshot.child(AppUtility.getInputText(et_loginCellphone)).exists()) {
-                                    User user = dataSnapshot.child(AppUtility.getInputText(et_loginCellphone)).getValue(User.class);
+                                if (dataSnapshot.child(AppUtility.getInputText(et_loginPhoneNumber)).exists()) {
+                                    User user = dataSnapshot.child(AppUtility.getInputText(et_loginPhoneNumber)).getValue(User.class);
                                     if (user != null) {
-                                        user.setCellphone(AppUtility.getInputText(et_loginCellphone));
+                                        user.setCellphone(AppUtility.getInputText(et_loginPhoneNumber));
                                         if (user.getPassword().equals(AppUtility.getInputText(et_loginPassword))) {
                                             View toastView = getLayoutInflater().inflate(R.layout.toast, (ViewGroup) findViewById(R.id.toastLayout));
                                             AppUtility.ShowToast(getApplicationContext(), "Login successful", toastView, 1);
-                                            Intent helloSplashIntent = new Intent(SignIn.this, HelloSplash.class);
+                                            Intent helloSplashIntent = new Intent(Login.this, HelloSplash.class);
                                             Common.currentUser = user;
                                             startActivity(helloSplashIntent);
                                             finish();
@@ -96,8 +109,8 @@ public class Login extends AppCompatActivity {
 
                                 }//end exist if
                                 else {
-                                    login_cellphone.setError("Number Does Not Exist");
-                                    et_loginCellphone.setText("");
+                                    login_phoneNumber.setError("Number Does Not Exist");
+                                    et_loginPhoneNumber.setText("");
                                     et_loginPassword.setText("");
                                     View toastView = getLayoutInflater().inflate(R.layout.toast, (ViewGroup) findViewById(R.id.toastLayout));
                                     AppUtility.ShowToast(getApplicationContext(), "Cellphone number does not exist!\nPlease register", toastView, 1);
@@ -123,26 +136,17 @@ public class Login extends AppCompatActivity {
         tvRegisterAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(SignIn.this,SignUp.class));
-                finish();
-            }
-        });
-
-        btnReset.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent resetIntent = new Intent(SignIn.this,PasswordReset.class);
-                startActivity(resetIntent);
-            }
-        });*/
-
-        tvRegisterAccount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
                 startActivity(new Intent(Login.this,Register.class));
                 finish();
             }
         });
 
+        /*btnReset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent resetIntent = new Intent(Login.this,PasswordReset.class);
+                startActivity(resetIntent);
+            }
+        });*/
     }
 }

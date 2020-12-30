@@ -71,7 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:contentDescription="@string/ivLogo_Description"
-            android:src="@drawable/logo_wht" />
+            android:src="@drawable/logo_white" />
     </RelativeLayout>
 
 </LinearLayout>

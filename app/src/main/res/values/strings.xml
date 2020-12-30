@@ -17,4 +17,12 @@
     <string name="passwordConfirm_hint">Confirm Password</string>
     <string name="btnRegister_text">Register</string>
     <string name="haveAccount_text">Already registered? Login here</string>
+    <string name="hello">Hello</string>
+    <string name="john">John</string>
+    <string name="search_books">Search books</string>
+    <string name="sell_books">Sell Books</string>
+    <string name="buy_books">Buy Books</string>
+    <string name="nav_home">Home</string>
+    <string name="upload_books">Upload Books</string>
+    <string name="browse_books">Browse Books</string>
 </resources>

@@ -11,6 +11,12 @@
     <color name="colorDivider">#BDBDBD</color>
     <color name="colorTextIcons">#FFFFFF</color>
 
+    <color name="colorDashBackground">#E85E28</color>
+    <color name="colorBackground">#EBEBEB</color>
+    <color name="colorWatchListStart">#00B09B</color>
+    <color name="colorWatchListEnd">#96C93D</color>
+
+
     <color name="black">#040404</color>
     <color name="white">#F4F3F3</color>
 

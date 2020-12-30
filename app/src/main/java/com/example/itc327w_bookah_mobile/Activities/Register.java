@@ -1,10 +1,12 @@
 package com.example.itc327w_bookah_mobile.Activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -12,9 +14,16 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.itc327w_bookah_mobile.AppUtilities.AppUtility;
+import com.example.itc327w_bookah_mobile.Model.User;
 import com.example.itc327w_bookah_mobile.R;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class Register extends AppCompatActivity {
 
@@ -65,25 +74,25 @@ public class Register extends AppCompatActivity {
 
         //Functionality
 
-        /*FirebaseDatabase database = FirebaseDatabase.getInstance();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference table_user = database.getReference("User");
 
-        et_regCellphone.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        et_regPhoneNumber.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean hasFocus) {
                 if(!hasFocus)
                 {
-                    if(!AppUtility.getInputText(et_regCellphone).isEmpty())
+                    if(!AppUtility.getInputText(et_regPhoneNumber).isEmpty())
                     {
-                        if(AppUtility.isValidCellphone(AppUtility.getInputText(et_regCellphone)))
+                        if(AppUtility.isValidCellphone(AppUtility.getInputText(et_regPhoneNumber)))
                         {
                             table_user.addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                    if(dataSnapshot.child(AppUtility.getInputText(et_regCellphone)).exists())
+                                    if(dataSnapshot.child(AppUtility.getInputText(et_regPhoneNumber)).exists())
                                     {
-                                        reg_cellphone.setError("Cellphone Number Exists");
-                                        et_regCellphone.setText("");
+                                        reg_phoneNumber.setError("Phone Number Exists");
+                                        et_regPhoneNumber.setText("");
                                         View toastView = getLayoutInflater().inflate(R.layout.toast,(ViewGroup) findViewById(R.id.toastLayout));
                                         AppUtility.ShowToast(getApplicationContext(), "User already exists!\nPlease login" , toastView,2);
                                     }
@@ -97,17 +106,17 @@ public class Register extends AppCompatActivity {
                         }
                         else
                         {
-                            reg_cellphone.setError("Invalid Cellphone Number Format!");
+                            reg_phoneNumber.setError("Invalid Cellphone Number Format!");
                         }
                     }
                     else
                     {
-                        reg_cellphone.setError(getString(R.string.cellphone_error));
+                        reg_phoneNumber.setError(getString(R.string.phoneNumber_error));
                     }
                 }
                 else
                 {
-                    reg_cellphone.setError(null);
+                    reg_phoneNumber.setError(null);
                 }
             }
         });
@@ -223,13 +232,13 @@ public class Register extends AppCompatActivity {
             public void onClick(View view) {
 
                 if(AppUtility.validateInput( new TextInputLayout[] {
-                                reg_cellphone,reg_firstName,reg_lastName,
+                                reg_phoneNumber,reg_firstName,reg_lastName,
                                 reg_id,reg_email,reg_password,reg_confirmPassword},
                         getResources().getStringArray(R.array.signUp_errors),
-                        et_regCellphone,et_regFirstName,et_regLastName,
+                        et_regPhoneNumber,et_regFirstName,et_regLastName,
                         et_regId,et_regEmail,et_regPassword,et_regConfirmPassword))
                 {
-                    if(AppUtility.isValidCellphone(AppUtility.getInputText(et_regCellphone)))
+                    if(AppUtility.isValidCellphone(AppUtility.getInputText(et_regPhoneNumber)))
                     {
                         if(AppUtility.isValidPassword(AppUtility.getInputText(et_regPassword)))
                         {
@@ -238,17 +247,17 @@ public class Register extends AppCompatActivity {
                                 table_user.addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                        User user = new User(AppUtility.getInputText(et_regCellphone),
+                                        User user = new User(AppUtility.getInputText(et_regPhoneNumber),
                                                 AppUtility.getInputText(et_regFirstName),
                                                 AppUtility.getInputText(et_regLastName),
                                                 AppUtility.getInputText(et_regId),
                                                 AppUtility.getInputText(et_regEmail),
                                                 AppUtility.getInputText(et_regPassword));
-                                        table_user.child(AppUtility.getInputText(et_regCellphone)).setValue(user);
+                                        table_user.child(AppUtility.getInputText(et_regPhoneNumber)).setValue(user);
 
                                         View toastView = getLayoutInflater().inflate(R.layout.toast,(ViewGroup) findViewById(R.id.toastLayout));
                                         AppUtility.ShowToast(getApplicationContext(), "Registration successful!\nPlease Login..." , toastView,1);
-                                        startActivity(new Intent(SignUp.this,SignIn.class));
+                                        startActivity(new Intent(Register.this,Login.class));
                                         finish();
                                     }
 
@@ -276,8 +285,8 @@ public class Register extends AppCompatActivity {
                     }
                     else
                     {
-                        et_regCellphone.setText("");
-                        reg_cellphone.setError("Invalid Cellphone Number");
+                        et_regPhoneNumber.setText("");
+                        reg_phoneNumber.setError("Invalid Cellphone Number");
                     }
                 }
                 else
@@ -287,14 +296,6 @@ public class Register extends AppCompatActivity {
                 }
             }
         });
-
-        tvLoginAccount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(SignUp.this,SignIn.class));
-                finish();
-            }
-        });*/
 
         tvAlreadyRegistered.setOnClickListener(new View.OnClickListener() {
             @Override

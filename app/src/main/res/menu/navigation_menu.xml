@@ -5,18 +5,18 @@
         android:id="@+id/menuHome"
         android:icon="@drawable/ic_home"
         android:iconTint="@color/black"
-        android:title="@string/nav_home"/>
+        android:title="@string/navHome"/>
 
     <item
         android:id="@+id/menuFavorites"
         android:icon="@drawable/ic_favorite"
         android:iconTint="@color/black"
-        android:title="@string/nav_home"/>
+        android:title="@string/navFavorites"/>
 
     <item
         android:id="@+id/menuProfile"
         android:icon="@drawable/ic_person"
         android:iconTint="@color/black"
-        android:title="@string/nav_home"/>
+        android:title="@string/navProfile"/>
 
 </menu>

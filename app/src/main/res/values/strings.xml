@@ -36,4 +36,17 @@
     <string name="password_confirmation_error">Password Confirmation Is Required!</string>
     <string name="tvUser_text">User</string>
 
+    //Dashboard
+    <string name="browse_books">browse_books</string>
+    <string name="upload_books">upload_books</string>
+    <string name="sell_books">sell_books</string>
+    <string name="buy_books">buy_books</string>
+    <string name="search_books">search_books</string>
+    <string name="john">john</string>
+    <string name="hello">hello</string>
+    <string name="home">Home</string>
+    <string name="navHome">navHome</string>
+    <string name="navFavorites">Favorites</string>
+    <string name="navProfile">Profile</string>
+
 </resources>

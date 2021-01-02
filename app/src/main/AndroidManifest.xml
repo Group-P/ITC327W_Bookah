@@ -14,11 +14,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.Home"
+        <activity android:name=".Activities.Search"></activity>
+        <activity
+            android:name=".Activities.Home"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"/>
-
-        <activity android:name=".Activities.SplashScreens.HelloSplash"/>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Activities.SplashScreens.HelloSplash" />
         <activity android:name=".Activities.SplashScreens.OpeningSplash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,6 +1,29 @@
 <resources>
     <string name="app_name">ITC327W_Bookah_Mobile</string>
 
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in nulla et dui molestie feugiat. Vestibulum sit amet facilisis mi,
+        euismod iaculis erat. Pellentesque ante est, egestas nec laoreet id, tincidunt vel felis. In sit amet sapien non tortor maximus bibendum elementum ut urna.
+        Aliquam fermentum sapien ipsum, sit amet tincidunt elit gravida nec. Etiam eu orci id quam auctor tempus. Praesent feugiat vel risus eu scelerisque.
+        Pellentesque sit amet sagittis sem. Morbi in quam eu metus dignissim porttitor. Vivamus molestie dignissim tortor sit amet cursus. Etiam id tellus sit amet sapien
+        tincidunt porttitor. Donec in orci vestibulum lectus porta facilisis. Donec feugiat tortor eget hendrerit sodales.
+        Nunc sed vulputate neque. Duis at magna at nunc congue vestibulum non vitae risus. Etiam lacinia felis dui. Fusce vulputate arcu sed interdum pharetra.
+        Phasellus fringilla sem quis urna blandit, sed lacinia lorem porta. Praesent dolor dui, vulputate vitae nunc sit amet, efficitur scelerisque quam.
+        Integer augue velit, rutrum id dictum id, vulputate vel turpis. Sed ac neque consequat, ultricies diam at, mattis turpis. Integer dignissim eros facilisis tincidunt
+        blandit.
+        In convallis dui at nibh porttitor aliquam. Nam tincidunt nunc tincidunt lacus convallis, non rhoncus magna aliquet. Morbi hendrerit, nisl ac sodales sodales,
+        elit velit luctus magna, eget scelerisque nulla neque vitae magna. Cras ac justo at risus posuere porta. Ut libero risus, laoreet a nibh a, rhoncus iaculis urna.
+        Integer elit dolor, porttitor a nisl id, cursus tempor nibh. Aliquam erat volutpat. In non placerat risus, consectetur tristique urna. Pellentesque habitant morbi
+        tristique senectus et netus et malesuada fames ac turpis egestas. Proin ut rutrum ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at malesuada
+        neque, at gravida urna.
+        Duis et laoreet diam, sit amet fringilla neque. Pellentesque quis efficitur metus. Morbi scelerisque sollicitudin auctor. Duis quis sapien et eros molestie lacinia.
+        Praesent quis ex id mauris sagittis hendrerit. Aliquam vel quam mauris. Pellentesque gravida laoreet mi at tempor. Suspendisse potenti. Nulla facilisi. Sed massa risus,
+        rutrum luctus sagittis ac, fermentum at metus. Vivamus erat velit, tristique ac ligula sit amet, feugiat facilisis ante. Aliquam commodo elementum posuere. Ut nec porta
+        diam, nec sodales massa. Nam ullamcorper ligula eleifend, hendrerit diam sit amet, imperdiet odio. Vestibulum at mi mollis, semper odio non, sagittis diam. Nullam in
+        interdum nisl.
+        Nam ac urna nulla. Aenean eget libero ullamcorper, suscipit lacus at, porttitor turpis. Curabitur vitae tincidunt velit. Nullam non neque sit amet lectus suscipit congue.
+        Ut eu erat lacinia, vehicula tortor vitae, tincidunt ipsum. Quisque sit amet nibh ut lectus porttitor volutpat id et dui. Cras nec lectus nec sapien tempus sollicitudin
+        in vitae neque. Quisque diam erat, eleifend quis sagittis ut, dapibus non dui.</string>
+
     <string name="ivLogo_Description">Image of the app\'s logo</string>
 
     //Buttons

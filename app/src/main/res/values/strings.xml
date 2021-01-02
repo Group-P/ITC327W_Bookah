@@ -10,7 +10,7 @@
         Phasellus fringilla sem quis urna blandit, sed lacinia lorem porta. Praesent dolor dui, vulputate vitae nunc sit amet, efficitur scelerisque quam.
         Integer augue velit, rutrum id dictum id, vulputate vel turpis. Sed ac neque consequat, ultricies diam at, mattis turpis. Integer dignissim eros facilisis tincidunt
         blandit.
-        In convallis dui at nibh porttitor aliquam. Nam tincidunt nunc tincidunt lacus convallis, non rhoncus magna aliquet. Morbi hendrerit, nisl ac sodales sodales,
+        In convallis dui at nibh porttitor aliquam. Nam tincidunt nunc tincidunt lacus convallis, non rhoncus magna aliquet. Morbi hendrerit, nisl ac sodales,
         elit velit luctus magna, eget scelerisque nulla neque vitae magna. Cras ac justo at risus posuere porta. Ut libero risus, laoreet a nibh a, rhoncus iaculis urna.
         Integer elit dolor, porttitor a nisl id, cursus tempor nibh. Aliquam erat volutpat. In non placerat risus, consectetur tristique urna. Pellentesque habitant morbi
         tristique senectus et netus et malesuada fames ac turpis egestas. Proin ut rutrum ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at malesuada
@@ -71,5 +71,11 @@
     <string name="navHome">navHome</string>
     <string name="navFavorites">Favorites</string>
     <string name="navProfile">Profile</string>
+
+    //Fragment Names
+    <string name="fragment_search">Search</string>
+    <string name="fragment_watch_list">Watch List</string>
+    <string name="fragment_post">Post</string>
+    <string name="fragment_account">Account</string>
 
 </resources>

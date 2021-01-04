@@ -30,7 +30,7 @@ public class HelloSplash extends AppCompatActivity {
         helloSplashTv = findViewById(R.id.helloSplashTv);
 
         helloSplashUserTv = findViewById(R.id.helloSplashUserTv);
-        helloSplashUserTv.setText(Common.currentUser.getFirstName());
+        //helloSplashUserTv.setText(Common.currentUser.getFirstName());
 
         helloSplashIv = findViewById(R.id.helloSplashIv);
         fadeIn = AnimationUtils.loadAnimation(this,R.anim.fade_in);

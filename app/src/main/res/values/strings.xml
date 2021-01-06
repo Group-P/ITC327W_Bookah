@@ -77,5 +77,6 @@
     <string name="fragment_watch_list">Watch List</string>
     <string name="fragment_post">Post</string>
     <string name="fragment_account">Account</string>
+    <string name="btnLogOut_text">Logout</string>
 
 </resources>

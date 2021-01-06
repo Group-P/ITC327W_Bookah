@@ -5,10 +5,11 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
 import com.example.itc327w_bookah_mobile.Model.User;
+import com.google.firebase.auth.FirebaseUser;
 
 public class Common {
 
-    public static User currentUser;
+    public static FirebaseUser currentUser;
     public static final String DELETE = "Delete";
     public static final String USER_KEY = "User";
     public static final String PWD_KEY = "Password";

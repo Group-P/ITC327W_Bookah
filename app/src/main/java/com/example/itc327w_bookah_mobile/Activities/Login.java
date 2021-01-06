@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -14,14 +15,20 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.itc327w_bookah_mobile.Activities.SplashScreens.HelloSplash;
 import com.example.itc327w_bookah_mobile.AppUtilities.AppUtility;
 import com.example.itc327w_bookah_mobile.Common.Common;
 import com.example.itc327w_bookah_mobile.Model.User;
 import com.example.itc327w_bookah_mobile.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,16 +37,19 @@ import com.google.firebase.database.ValueEventListener;
 
 import io.paperdb.Paper;
 
-public class Login extends AppCompatActivity {
+public class Login extends AppCompatActivity implements View.OnClickListener {
 
     //Variables
     Animation topAnimation;
     ImageView logo_image;
-    TextInputLayout login_phoneNumber, login_password;
-    TextInputEditText et_loginPhoneNumber, et_loginPassword;
+    TextInputLayout login_email, login_password;
+    TextInputEditText et_loginEmail, et_loginPassword;
     TextView tvRegisterAccount;
     CheckBox cb_StayLoggedIn;
-    Button login_btn, btnReset;
+    Button btnLogin, btnReset;
+
+    //Firebase
+    private FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,15 +60,25 @@ public class Login extends AppCompatActivity {
         //Hooks
         logo_image = findViewById(R.id.login_logo);
 
-        login_phoneNumber = findViewById(R.id.login_phoneNumber);
-        et_loginPhoneNumber = findViewById(R.id.et_loginPhoneNumber);
+        login_email = findViewById(R.id.login_email);
+        et_loginEmail = findViewById(R.id.et_loginEmail);
 
         login_password = findViewById(R.id.login_password);
         et_loginPassword = findViewById(R.id.et_loginPassword);
 
         cb_StayLoggedIn = findViewById(R.id.cb_StayLoggedIn);
-        login_btn = findViewById(R.id.btnLogin);
+
+        btnLogin = findViewById(R.id.btnLogin);
+        btnLogin.setOnClickListener(this);
+
         tvRegisterAccount = findViewById(R.id.tvRegisterAccount);
+        tvRegisterAccount.setOnClickListener(this);
+
+        btnReset = findViewById(R.id.btnReset);
+        btnReset.setOnClickListener(this);
+
+        //Firebase
+        auth = FirebaseAuth.getInstance();
 
         //Animation
         topAnimation = AnimationUtils.loadAnimation(this,R.anim.top_animation);
@@ -71,7 +91,7 @@ public class Login extends AppCompatActivity {
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference table_user = database.getReference("User");
 
-        login_btn.setOnClickListener(new View.OnClickListener() {
+        /*login_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -131,22 +151,124 @@ public class Login extends AppCompatActivity {
                     AppUtility.ShowToast(getApplicationContext(), "Unable to connect!\nPlease check your internet connection", toastView, 2);
                 }
             }
+        });*/
+
+        btnReset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent forgotPassIntent = new Intent(Login.this,
+                        ForgotPassword.class);
+                startActivity(forgotPassIntent);
+            }
         });
 
-        tvRegisterAccount.setOnClickListener(new View.OnClickListener() {
+        /*tvRegisterAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(Login.this,Register.class));
                 finish();
             }
-        });
-
-        /*btnReset.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent resetIntent = new Intent(Login.this,PasswordReset.class);
-                startActivity(resetIntent);
-            }
         });*/
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.tvRegisterAccount:
+                startActivity(new Intent(this, Register.class));
+                break;
+
+            case R.id.btnLogin:
+                userLogin();
+                break;
+        }
+    }
+
+    private void userLogin() {
+
+          String email = et_loginEmail.getText().toString().trim();
+          String password = et_loginPassword.getText().toString().trim();
+
+          //Validation
+        if (email.isEmpty())
+        {
+            et_loginEmail.setError("");
+            login_email.setError("Email is required");
+            et_loginEmail.requestFocus();
+            return;
+        }
+
+        if(!AppUtility.isValidEmail(email))
+        {
+            et_loginEmail.setError("");
+            login_email.setError("Please enter a valid email");
+            et_loginEmail.requestFocus();
+            return;
+        }
+
+        if(password.isEmpty())
+        {
+            et_loginPassword.setError("");
+            login_password.setError("Password is required");
+            et_loginPassword.requestFocus();
+            return;
+        }
+
+        if(!AppUtility.isValidPassword(password))
+        {
+            et_loginPassword.setError("");
+            login_password.setError("Please enter a valid password");
+            et_loginPassword.requestFocus();
+            return;
+        }
+
+        if(password.length() < 6)
+        {
+            et_loginPassword.setError("");
+            login_password.setError("Password is too short!");
+            et_loginPassword.requestFocus();
+            return;
+        }
+
+        auth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                            if(user.isEmailVerified())
+                            {
+                                //Redirect user to
+                                startActivity(new Intent(Login.this, Home.class));
+                                Common.currentUser = user;
+                                finish();
+                            }
+                            else {
+                                user.sendEmailVerification();
+                                Toast.makeText(Login.this,
+                                        "Check your email to verify your account",
+                                        Toast.LENGTH_LONG).show();
+                            }
+
+
+                            /*// Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "signInWithEmail:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            updateUI(user);*/
+                        } else {
+
+                            Toast.makeText(Login.this,
+                                    "Failed to login, please check you credentials.", Toast.LENGTH_LONG).show();
+                            /*// If sign in fails, display a message to the user.
+                            Log.w(TAG, "signInWithEmail:failure", task.getException());
+                            Toast.makeText(EmailPasswordActivity.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                            updateUI(null);*/
+                        }
+
+                        // ...
+                    }
+                });
     }
 }

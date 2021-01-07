@@ -90,85 +90,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference table_user = database.getReference("User");
-
-        /*login_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                if (Common.isConnectedToInternet(getBaseContext())) {
-                    if (cb_StayLoggedIn.isChecked()) {
-                        Paper.book().write(Common.USER_KEY, AppUtility.getInputText(et_loginPhoneNumber));
-                        Paper.book().write(Common.PWD_KEY, AppUtility.getInputText(et_loginPassword));
-                    }
-
-                    if (AppUtility.validateInput(new TextInputLayout[]{
-                                    login_phoneNumber, login_password
-                            }, getResources().getStringArray(R.array.signIn_errors),
-                            et_loginPhoneNumber, et_loginPassword)) {
-                        table_user.addValueEventListener(new ValueEventListener() {
-
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                if (dataSnapshot.child(AppUtility.getInputText(et_loginPhoneNumber)).exists()) {
-                                    User user = dataSnapshot.child(AppUtility.getInputText(et_loginPhoneNumber)).getValue(User.class);
-                                    if (user != null) {
-                                        user.setCellphone(AppUtility.getInputText(et_loginPhoneNumber));
-                                        if (user.getPassword().equals(AppUtility.getInputText(et_loginPassword))) {
-                                            View toastView = getLayoutInflater().inflate(R.layout.toast, (ViewGroup) findViewById(R.id.toastLayout));
-                                            AppUtility.ShowToast(getApplicationContext(), "Login successful", toastView, 1);
-                                            Intent helloSplashIntent = new Intent(Login.this, HelloSplash.class);
-                                            Common.currentUser = user;
-                                            startActivity(helloSplashIntent);
-                                            finish();
-                                        }//end password if
-                                        else {
-                                            login_password.setError("Incorrect Password");
-                                            et_loginPassword.setText("");
-                                        }
-                                    }//end user null if
-
-                                }//end exist if
-                                else {
-                                    login_phoneNumber.setError("Number Does Not Exist");
-                                    et_loginPhoneNumber.setText("");
-                                    et_loginPassword.setText("");
-                                    View toastView = getLayoutInflater().inflate(R.layout.toast, (ViewGroup) findViewById(R.id.toastLayout));
-                                    AppUtility.ShowToast(getApplicationContext(), "Cellphone number does not exist!\nPlease register", toastView, 1);
-                                }
-                            }
-
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
-                                View toastView = getLayoutInflater().inflate(R.layout.toast, (ViewGroup) findViewById(R.id.toastLayout));
-                                AppUtility.ShowToast(getApplicationContext(), "Error: " + databaseError.getMessage(), toastView, 2);
-                            }
-                        });
-                    }
-                }
-                else
-                {
-                    View toastView = getLayoutInflater().inflate(R.layout.toast, (ViewGroup) findViewById(R.id.toastLayout));
-                    AppUtility.ShowToast(getApplicationContext(), "Unable to connect!\nPlease check your internet connection", toastView, 2);
-                }
-            }
-        });*/
-
-        btnReset.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent forgotPassIntent = new Intent(Login.this,
-                        ForgotPassword.class);
-                startActivity(forgotPassIntent);
-            }
-        });
-
-        /*tvRegisterAccount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(Login.this,Register.class));
-                finish();
-            }
-        });*/
     }
 
     @Override
@@ -179,8 +100,35 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 break;
 
             case R.id.btnLogin:
-                userLogin();
+
+                //All the validation code
+                if (Common.isConnectedToInternet(getBaseContext()))
+                {
+                    if (cb_StayLoggedIn.isChecked())
+                    {
+                        Paper.book().write(Common.USER_KEY, AppUtility.getInputText(et_loginEmail));
+                        Paper.book().write(Common.PWD_KEY, AppUtility.getInputText(et_loginPassword));
+                    }
+                    if (AppUtility.validateInput(new TextInputLayout[]{
+                            login_email, login_password
+                    }, getResources().getStringArray(R.array.signIn_errors),
+                            et_loginEmail, et_loginPassword))
+                    {
+                        userLogin();
+
+                    }
+                }
+                else
+                {
+                    View toastView = getLayoutInflater().inflate(R.layout.toast, (ViewGroup) findViewById(R.id.toastLayout));
+                    AppUtility.ShowToast(getApplicationContext(), "Unable to connect!\nPlease check your internet connection", toastView, 2);
+                }// end (Common.isConnectedToInternet(getBaseContext())) else
+
                 break;
+
+            case R.id.btnReset:
+                startActivity(new Intent(Login.this, ForgotPassword.class));
+                finish();
         }
     }
 
@@ -188,47 +136,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
           String email = et_loginEmail.getText().toString().trim();
           String password = et_loginPassword.getText().toString().trim();
-
-          //Validation
-        if (email.isEmpty())
-        {
-            et_loginEmail.setError("");
-            login_email.setError("Email is required");
-            et_loginEmail.requestFocus();
-            return;
-        }
-
-        if(!AppUtility.isValidEmail(email))
-        {
-            et_loginEmail.setError("");
-            login_email.setError("Please enter a valid email");
-            et_loginEmail.requestFocus();
-            return;
-        }
-
-        if(password.isEmpty())
-        {
-            et_loginPassword.setError("");
-            login_password.setError("Password is required");
-            et_loginPassword.requestFocus();
-            return;
-        }
-
-        if(!AppUtility.isValidPassword(password))
-        {
-            et_loginPassword.setError("");
-            login_password.setError("Please enter a valid password");
-            et_loginPassword.requestFocus();
-            return;
-        }
-
-        if(password.length() < 6)
-        {
-            et_loginPassword.setError("");
-            login_password.setError("Password is too short!");
-            et_loginPassword.requestFocus();
-            return;
-        }
 
         auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -240,7 +147,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                             if(user.isEmailVerified())
                             {
                                 //Redirect user to
-                                startActivity(new Intent(Login.this, Home.class));
+                                startActivity(new Intent(Login.this, HelloSplash.class));
                                 Common.currentUser = user;
                                 finish();
                             }
@@ -250,21 +157,10 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                                         "Check your email to verify your account",
                                         Toast.LENGTH_LONG).show();
                             }
-
-
-                            /*// Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);*/
                         } else {
 
-                            Toast.makeText(Login.this,
-                                    "Failed to login, please check you credentials.", Toast.LENGTH_LONG).show();
-                            /*// If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithEmail:failure", task.getException());
-                            Toast.makeText(EmailPasswordActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                            updateUI(null);*/
+                            View toastView = getLayoutInflater().inflate(R.layout.toast, (ViewGroup) findViewById(R.id.toastLayout));
+                            AppUtility.ShowToast(getApplicationContext(), "Credentials are incorrect!\nPlease register", toastView, 1);
                         }
 
                         // ...

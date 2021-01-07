@@ -2,26 +2,17 @@ package com.example.itc327w_bookah_mobile.Model;
 
 public class User {
     private String PhoneNumber, FirstName, LastName, IDNumber, EmailAddress, Password;
-    public double balance;
 
     public User() {
     }
 
     public User(String phoneNumber, String firstName, String lastName, String IDNumber, String emailAddress, String password) {
-        PhoneNumber = phoneNumber;
-        FirstName = firstName;
-        LastName = lastName;
+        this.PhoneNumber = phoneNumber;
+        this.FirstName = firstName;
+        this.LastName = lastName;
         this.IDNumber = IDNumber;
-        EmailAddress = emailAddress;
-        Password = password;
-    }
-
-    public double getBalance() {
-        return balance;
-    }
-
-    public void setBalance(double balance) {
-        this.balance = balance;
+        this.EmailAddress = emailAddress;
+        this.Password = password;
     }
 
     public String getCellphone() {

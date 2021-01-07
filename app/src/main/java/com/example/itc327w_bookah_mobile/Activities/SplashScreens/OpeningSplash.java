@@ -55,7 +55,7 @@ public class OpeningSplash extends AppCompatActivity {
             Intent splashIntent = new Intent(OpeningSplash.this, Login.class);
             startActivity(splashIntent);
             finish();
-        },5000);
+        },3000);
 
     }
 }

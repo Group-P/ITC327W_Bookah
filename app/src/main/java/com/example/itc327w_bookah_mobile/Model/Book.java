@@ -2,7 +2,7 @@ package com.example.itc327w_bookah_mobile.Model;
 
 public class Book {
 
-    public String title, author, description, edition, ISBN, pictureURL, publisher;
+    public String title, author, description, edition, isbn, pictureURL, publisher;
 
     public Book() {
     }
@@ -12,7 +12,7 @@ public class Book {
         this.author = author;
         this.description = description;
         this.edition = edition;
-        this.ISBN = isbn;
+        this.isbn = isbn;
         this.pictureURL = pictureURL;
         this.publisher = publisher;
     }
@@ -49,12 +49,12 @@ public class Book {
         this.edition = edition;
     }
 
-    public String getISBN() {
-        return ISBN;
+    public String getIsbn() {
+        return isbn;
     }
 
-    public void setISBN(String ISBN) {
-        this.ISBN = ISBN;
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
     }
 
     public String getPictureURL() {

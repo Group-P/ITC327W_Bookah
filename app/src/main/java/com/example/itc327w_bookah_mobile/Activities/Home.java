@@ -23,7 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class Home extends AppCompatActivity {
 
-<<<<<<< Updated upstream
+//<<<<<<< Updated upstream
     TextView textFirstName;
     TextView textLastName;
     LinearLayout layoutLogout;

@@ -3,6 +3,7 @@ package com.example.itc327w_bookah_mobile.Activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -68,11 +69,16 @@ public class ForgotPassword extends AppCompatActivity {
             }
         });
 
-        btnReset.setOnClickListener(new View.OnClickListener() {
+        btnReset.setOnClickListener(v -> {
+            resetPassword();
+        });
+
+        tvRememberedPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                resetPassword();
+                startActivity(new Intent(ForgotPassword.this, Login.class));
+                finish();
             }
         });
 
@@ -101,12 +107,13 @@ public class ForgotPassword extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(ForgotPassword.this,
-                                    "Check your email for the link to reset your password", Toast.LENGTH_LONG).show();
+                            View toastView = getLayoutInflater().inflate(R.layout.toast, findViewById(R.id.toastLayout));
+                            AppUtility.ShowToast(getApplicationContext(), "Check your email for the link to reset your password" , toastView,1);
+                            startActivity(new Intent(ForgotPassword.this, Login.class));
+                            finish();
                         } else {
-                            Toast.makeText(ForgotPassword.this,
-                                     "Try again, Something went wrong!", Toast.LENGTH_LONG).show();
-
+                            View toastView = getLayoutInflater().inflate(R.layout.toast, findViewById(R.id.toastLayout));
+                            AppUtility.ShowToast(getApplicationContext(), "Try again, Something went wrong!" , toastView,2);
                         }
                     }
                 });

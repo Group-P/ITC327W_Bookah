@@ -42,7 +42,7 @@ public class PostFragment extends Fragment {
         mProgressBar = (ProgressBar) view.findViewById(R.id.progressBar);
 
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
-
+        init();
         return view;
     }
 

@@ -1,6 +1,8 @@
 package com.example.itc327w_bookah_mobile.Activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
 
@@ -20,6 +22,7 @@ import com.google.android.material.tabs.TabLayout;
 public class Search extends AppCompatActivity {
 
     private static final String TAG = "SearchActivity";
+    private static final int REQUEST_CODE = 1;
     //Widget
     private TabLayout mTabLayout;
     public ViewPager mViewPager;
@@ -67,5 +70,14 @@ public class Search extends AppCompatActivity {
                 permissions[2]) == PackageManager.PERMISSION_GRANTED) {
             setupViewPager();
         }
+        else
+        {
+            ActivityCompat.requestPermissions(Search.this,permissions,REQUEST_CODE);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        verifyPermissions();
     }
 }

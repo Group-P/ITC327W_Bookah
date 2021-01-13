@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,6 +33,7 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_home);
 
         firebasenameview = findViewById(R.id.firebasename);
@@ -94,19 +96,19 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        /*Intent i;
+        Intent i;
 
         switch (view.getId()){
-            case R.id.layout_browseBooks : i = new Intent(this,additemActivity.class); startActivity(i); break;
-            case R.id.layout_addBooks : i = new Intent(this,deleteItemsActivity.class);startActivity(i); break;
-            case R.id.layout_requestBooks : i = new Intent(this,scanItemsActivity.class);startActivity(i); break;
-            case R.id.layout_cartBooks : i = new Intent(this,viewInventoryActivity.class);startActivity(i); break;
-            case R.id.layout_orderedBooks : i = new Intent(this,viewInventoryActivity.class);startActivity(i); break;
-            case R.id.layout_aboutUs : i = new Intent(this,viewInventoryActivity.class);startActivity(i); break;
-            case R.id.layout_contactUs : i = new Intent(this,viewInventoryActivity.class);startActivity(i); break;
-            case R.id.layout_help : i = new Intent(this,viewInventoryActivity.class);startActivity(i); break;
-            case R.id.layout_settings : i = new Intent(this,viewInventoryActivity.class);startActivity(i); break;
+            case R.id.layout_browseBooks : i = new Intent(this,BrowseBooks.class); startActivity(i); break;
+            case R.id.layout_addBooks : i = new Intent(this,UploadBooks.class);startActivity(i); break;
+            case R.id.layout_requestBooks : i = new Intent(this,RequestedBooks.class);startActivity(i); break;
+            case R.id.layout_cartBooks : i = new Intent(this,Cart.class);startActivity(i); break;
+            case R.id.layout_orderedBooks : i = new Intent(this,OrderedBooks.class);startActivity(i); break;
+            case R.id.layout_aboutUs : i = new Intent(this,AboutUs.class);startActivity(i); break;
+            case R.id.layout_contactUs : i = new Intent(this,ContactUs.class);startActivity(i); break;
+            case R.id.layout_help : i = new Intent(this,Help.class);startActivity(i); break;
+            case R.id.layout_settings : i = new Intent(this,Settings.class);startActivity(i); break;
             default: break;
-        }*/
+        }
     }
 }

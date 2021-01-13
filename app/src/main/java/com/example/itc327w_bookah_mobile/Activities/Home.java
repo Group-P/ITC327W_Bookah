@@ -2,7 +2,6 @@ package com.example.itc327w_bookah_mobile.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,7 +9,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.itc327w_bookah_mobile.Common.Common;
 import com.example.itc327w_bookah_mobile.Model.User;
 import com.example.itc327w_bookah_mobile.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,45 +19,29 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class Home extends AppCompatActivity {
-
-    TextView textFirstName;
-    TextView textLastName;
-    LinearLayout layoutLogout;
+public class Home extends AppCompatActivity implements View.OnClickListener {
 
     //Firebase
     private FirebaseUser user;
-    private DatabaseReference dbReference;
-    private  String userID;
+    private DatabaseReference databaseReference;
+    private String userID;
+    //Variables
+    TextView firebasenameview;
+    LinearLayout browseBooks, addBooks, requestBooks, cartBooks, orderedBooks, aboutUs, contactUs, help, settings, logout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        textFirstName = (TextView) findViewById(R.id.textFirstName);
-        textLastName = (TextView) findViewById(R.id.textLastName);
-        layoutLogout = findViewById(R.id.layoutLogout);
+        firebasenameview = findViewById(R.id.firebasename);
 
-        layoutLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(Home.this, Login.class));
-                finish();
-            }
-        });
-
-        //Firebase
         user = FirebaseAuth.getInstance().getCurrentUser();
-        dbReference = FirebaseDatabase.getInstance().getReference("User");
+        databaseReference = FirebaseDatabase.getInstance().getReference("User");
         userID = user.getUid();
 
-        final TextView firstNameDash = (TextView) findViewById(R.id.textFirstName);
-        final TextView lastNameDash = (TextView) findViewById(R.id.textLastName);
-
-        dbReference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+        //Displays users name on the dashboard
+        databaseReference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User userProfileInfo = snapshot.getValue(User.class);
@@ -67,18 +49,64 @@ public class Home extends AppCompatActivity {
                 if(userProfileInfo != null)
                 {
                     String firstName = userProfileInfo.getFirstName();
-                    String lastName = userProfileInfo.getLastName();
-
-                    firstNameDash.setText(firstName);
-                    lastNameDash.setText(lastName);
+                    firebasenameview.setText(firstName);
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
                 Toast.makeText(Home.this, "Oops! Something happened.", Toast.LENGTH_SHORT).show();
             }
         });
+
+        //Hooks
+        browseBooks = findViewById(R.id.layout_browseBooks);
+        addBooks = findViewById(R.id.layout_addBooks);
+        requestBooks = findViewById(R.id.layout_requestBooks);
+        cartBooks = findViewById(R.id.layout_cartBooks);
+        orderedBooks = findViewById(R.id.layout_orderedBooks);
+        aboutUs = findViewById(R.id.layout_aboutUs);
+        contactUs = findViewById(R.id.layout_contactUs);
+        help = findViewById(R.id.layout_help);
+        settings = findViewById(R.id.layout_settings);
+        logout = findViewById(R.id.layout_logout);
+
+        browseBooks.setOnClickListener(this);
+        addBooks.setOnClickListener(this);
+        requestBooks.setOnClickListener(this);
+        cartBooks.setOnClickListener(this);
+        orderedBooks.setOnClickListener(this);
+        aboutUs.setOnClickListener(this);
+        contactUs.setOnClickListener(this);
+        help.setOnClickListener(this);
+        settings.setOnClickListener(this);
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(Home.this, Login.class));
+                finish();
+            }
+        });
+
+    }
+
+    @Override
+    public void onClick(View view) {
+        /*Intent i;
+
+        switch (view.getId()){
+            case R.id.layout_browseBooks : i = new Intent(this,additemActivity.class); startActivity(i); break;
+            case R.id.layout_addBooks : i = new Intent(this,deleteItemsActivity.class);startActivity(i); break;
+            case R.id.layout_requestBooks : i = new Intent(this,scanItemsActivity.class);startActivity(i); break;
+            case R.id.layout_cartBooks : i = new Intent(this,viewInventoryActivity.class);startActivity(i); break;
+            case R.id.layout_orderedBooks : i = new Intent(this,viewInventoryActivity.class);startActivity(i); break;
+            case R.id.layout_aboutUs : i = new Intent(this,viewInventoryActivity.class);startActivity(i); break;
+            case R.id.layout_contactUs : i = new Intent(this,viewInventoryActivity.class);startActivity(i); break;
+            case R.id.layout_help : i = new Intent(this,viewInventoryActivity.class);startActivity(i); break;
+            case R.id.layout_settings : i = new Intent(this,viewInventoryActivity.class);startActivity(i); break;
+            default: break;
+        }*/
     }
 }

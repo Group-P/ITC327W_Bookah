@@ -1,9 +1,235 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activities.UploadBooks">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsing"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:fitsSystemWindows="true"
+            app:contentScrim="@color/white"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            android:background="@color/Tiber">
+
+            <ImageView
+                android:id="@+id/bookImage"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:layout_gravity="center"
+                android:contentDescription="@null"
+                android:scaleType="centerCrop"
+                app:layout_collapseMode="parallax"
+                android:src="@drawable/ic_upload_photo"/>
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:background="@color/flamingo"
+                android:layout_height="?attr/actionBarSize"
+                android:title="@string/upload_books"
+                app:subtitleTextColor="@color/white"
+                app:layout_collapseMode="parallax"
+                app:popupTheme="@style/ThemeOverlay.MaterialComponents.Light"/>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardElevation="8dp"
+            app:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:padding="12dp"
+                    android:text="@string/uploadBookInstructions_text"
+                    android:fontFamily="@font/capriola"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textAlignment="center"/>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/bookISBN"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/ErrorText"
+                    android:layout_width="376dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:hint="ISBN"
+                    app:endIconMode="clear_text"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_bookISBN"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text">
+                    </com.google.android.material.textfield.TextInputEditText>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/bookTitle"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/ErrorText"
+                    android:layout_width="376dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:hint="Title"
+                    app:endIconMode="clear_text"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_bookTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text">
+                    </com.google.android.material.textfield.TextInputEditText>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/bookAuthor"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/ErrorText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Author"
+                    app:endIconMode="clear_text"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_bookAuthor"
+                        android:layout_width="376dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:inputType="text" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/bookEdition"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/ErrorText"
+                    app:endIconMode="clear_text"
+                    android:layout_width="376dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:hint="Edition"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_bookEdition"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/bookPublisher"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/ErrorText"
+                    android:layout_width="376dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:hint="Publisher"
+                    app:endIconMode="clear_text"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_bookPublisher"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text">
+                    </com.google.android.material.textfield.TextInputEditText>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/bookCondition"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/ErrorText"
+                    app:endIconMode="clear_text"
+                    android:layout_width="376dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:hint="Book Condition: Brand New, Moderate, Real Old"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_bookCondition"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textCapSentences"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/bookDescription"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/ErrorText"
+                    android:layout_width="376dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:hint="Short description of book"
+                    app:endIconMode="clear_text"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_bookDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textShortMessage"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Button
+                    android:id="@+id/btnBrowsePhoto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:backgroundTint="@color/richBlue"
+                    android:text="Browse Photo"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/capriola"
+                    android:textStyle="bold"
+                    app:cornerRadius="10dp"/>
+
+                <Button
+                    android:id="@+id/btnUploadBook"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:layout_marginBottom="5dp"
+                    android:backgroundTint="@color/Tiber"
+                    android:fontFamily="@font/capriola"
+                    android:text="Upload Book"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="10dp" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

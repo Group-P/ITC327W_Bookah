@@ -90,5 +90,7 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <string name="bookName_text">Book Name</string>
+    <string name="uploadBookInstructions_text">To upload your book, please add a photo of the book and enter all book details below:</string>
 
 </resources>

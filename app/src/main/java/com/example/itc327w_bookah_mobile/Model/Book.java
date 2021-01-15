@@ -2,19 +2,36 @@ package com.example.itc327w_bookah_mobile.Model;
 
 public class Book {
 
-    public String title, author, description, edition, isbn, pictureURL, publisher;
+    public String imageURL,isbn,title, author, edition, publisher, condition, description;
 
     public Book() {
     }
 
-    public Book(String title, String author, String description, String edition, String isbn, String pictureURL, String publisher) {
+    public Book(String imageURL,String isbn, String title, String author, String edition, String publisher,  String condition, String description) {
+        this.imageURL = imageURL;
+        this.isbn = isbn;
         this.title = title;
         this.author = author;
-        this.description = description;
         this.edition = edition;
-        this.isbn = isbn;
-        this.pictureURL = pictureURL;
         this.publisher = publisher;
+        this.condition = condition;
+        this.description = description;
+    }
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
     }
 
     public String getTitle() {
@@ -33,14 +50,6 @@ public class Book {
         this.author = author;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public String getEdition() {
         return edition;
     }
@@ -49,27 +58,27 @@ public class Book {
         this.edition = edition;
     }
 
-    public String getIsbn() {
-        return isbn;
-    }
-
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
-    }
-
-    public String getPictureURL() {
-        return pictureURL;
-    }
-
-    public void setPictureURL(String pictureURL) {
-        this.pictureURL = pictureURL;
-    }
-
     public String getPublisher() {
         return publisher;
     }
 
     public void setPublisher(String publisher) {
         this.publisher = publisher;
+    }
+
+    public String getCondition() {
+        return condition;
+    }
+
+    public void setCondition(String condition) {
+        this.condition = condition;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.BrowseBooks"></activity>
+        <activity android:name=".Activities.BookDetail"></activity>
+        <activity android:name=".Activities.BrowseBooks" />
         <activity android:name=".Activities.UploadBooks" />
         <activity android:name=".Activities.RequestedBooks" />
         <activity android:name=".Activities.Cart" />

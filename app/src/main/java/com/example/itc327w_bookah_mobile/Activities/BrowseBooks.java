@@ -9,7 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
-import com.bumptech.glide.Glide;
+
 import com.example.itc327w_bookah_mobile.Interface.ItemClickListener;
 import com.example.itc327w_bookah_mobile.Model.Book;
 import com.example.itc327w_bookah_mobile.R;
@@ -52,17 +52,21 @@ public class BrowseBooks extends AppCompatActivity {
             }
         });
 
-        loadBookList();
+        if (getIntent() != null) {
+            loadBookList();
+        }
     }
 
     private void loadBookList() {
-        adapter = new FirebaseRecyclerAdapter<Book, BookViewHolder>(Book.class, R.layout.book_item,
+        adapter = new FirebaseRecyclerAdapter<Book, BookViewHolder>(Book.class, R.layout.browse_book_item,
                 BookViewHolder.class,bookList.orderByChild("Book"))
         {
             @Override
             protected void populateViewHolder(final BookViewHolder viewHolder, final Book model, final int position) {
                 viewHolder.book_name.setText(model.getTitle());
-                Glide.with(getBaseContext()).load(model.getImageURL()).into(viewHolder.book_image);
+                viewHolder.book_author.setText(model.getAuthor());
+                viewHolder.book_price.setText(model.getPrice());
+                //Glide.with(getBaseContext()).load(model.getImageURL()).into(viewHolder.book_image);
 
                 final Book local = model;
                 viewHolder.setItemClickListener(new ItemClickListener() {

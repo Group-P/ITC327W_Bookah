@@ -14,10 +14,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.BookDetail"></activity>
+        <activity android:name=".Activities.SplashScreens.VerificationSplash"></activity>
+        <activity android:name=".Activities.BookDetail" />
         <activity android:name=".Activities.BrowseBooks" />
         <activity android:name=".Activities.UploadBooks" />
-        <activity android:name=".Activities.RequestedBooks" />
+        <activity android:name=".Activities.RequestedBooksActivity" />
         <activity android:name=".Activities.Cart" />
         <activity android:name=".Activities.OrderedBooks" />
         <activity android:name=".Activities.AboutUs" />

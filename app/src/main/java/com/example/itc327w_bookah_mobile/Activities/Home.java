@@ -101,7 +101,7 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
         switch (view.getId()){
             case R.id.layout_browseBooks : i = new Intent(this,BrowseBooks.class); startActivity(i); break;
             case R.id.layout_addBooks : i = new Intent(this,UploadBooks.class);startActivity(i); break;
-            case R.id.layout_requestBooks : i = new Intent(this,RequestedBooks.class);startActivity(i); break;
+            case R.id.layout_requestBooks : i = new Intent(this, RequestedBooksActivity.class);startActivity(i); break;
             case R.id.layout_cartBooks : i = new Intent(this,Cart.class);startActivity(i); break;
             case R.id.layout_orderedBooks : i = new Intent(this,OrderedBooks.class);startActivity(i); break;
             case R.id.layout_aboutUs : i = new Intent(this,AboutUs.class);startActivity(i); break;

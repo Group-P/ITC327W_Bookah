@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.example.itc327w_bookah_mobile.R;
 
-public class RequestedBooks extends AppCompatActivity {
+public class RequestedBooksActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

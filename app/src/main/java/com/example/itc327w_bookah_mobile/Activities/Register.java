@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.itc327w_bookah_mobile.Activities.SplashScreens.VerificationSplash;
 import com.example.itc327w_bookah_mobile.AppUtilities.AppUtility;
 import com.example.itc327w_bookah_mobile.Common.Common;
 import com.example.itc327w_bookah_mobile.Model.User;
@@ -23,6 +25,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Objects;
@@ -85,7 +88,6 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         ivLogo.startAnimation(topAnimation);
 
         //Functionality
-
        et_regFirstName.setOnFocusChangeListener((view, hasFocus) -> {
             if(hasFocus)
             {
@@ -315,10 +317,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                                             et_regId.getText().toString().trim(),
                                             et_regEmail.getText().toString().trim(),
                                             et_regPassword.getText().toString().trim()
-
                                     );
-
-
 
                                     FirebaseDatabase.getInstance().getReference("User")
                                             .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
@@ -328,11 +327,13 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
 
                                             if(task.isSuccessful())
                                             {
-                                                View toastView = getLayoutInflater().inflate(R.layout.toast, findViewById(R.id.toastLayout));
-                                                AppUtility.ShowToast(getApplicationContext(), "Registration successful!\nPlease Login..." , toastView,1);
+                                                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                                                user.sendEmailVerification();
 
-                                                //Redirect to the login screen
-                                                startActivity(new Intent(Register.this,Login.class));
+                                                View toastView = getLayoutInflater().inflate(R.layout.toast, findViewById(R.id.toastLayout));
+                                                AppUtility.ShowToast(getApplicationContext(), "Registration successful!\nPlease Verify Account..." , toastView,1);
+
+                                                startActivity(new Intent(Register.this, VerificationSplash.class));
                                                 finish();
                                             }
                                             else

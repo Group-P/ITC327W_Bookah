@@ -14,7 +14,7 @@ public class Common {
     public static final String USER_KEY = "User";
     public static final String PWD_KEY = "Password";
 
-    public static boolean isConnectedToInternet(Context context) {
+   /* public static boolean isConnectedToInternet(Context context) {
         ConnectivityManager connectivityManager = (ConnectivityManager)
                 context.getSystemService(Context.CONNECTIVITY_SERVICE);
         if(connectivityManager != null) {
@@ -27,5 +27,5 @@ public class Common {
             }
         }
         return false;
-    }
+    }*/
 }

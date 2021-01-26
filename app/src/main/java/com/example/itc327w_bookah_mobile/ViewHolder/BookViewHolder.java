@@ -12,6 +12,8 @@ import com.example.itc327w_bookah_mobile.R;
 public class BookViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
     public TextView book_name;
+    public TextView book_author;
+    public TextView book_price;
     public ImageView book_image;
 
     private ItemClickListener itemClickListener;
@@ -23,7 +25,9 @@ public class BookViewHolder extends RecyclerView.ViewHolder implements View.OnCl
     public BookViewHolder(View itemView) {
         super(itemView);
 
-        book_name = itemView.findViewById(R.id.book_name);
+        book_name = itemView.findViewById(R.id.book_title);
+        book_author = itemView.findViewById(R.id.book_author);
+        book_price = itemView.findViewById(R.id.book_price);
         book_image = itemView.findViewById(R.id.book_image);
         itemView.setOnClickListener(this);
     }

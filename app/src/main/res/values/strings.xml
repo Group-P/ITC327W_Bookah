@@ -30,6 +30,7 @@
     <string name="btnForgetPassword_text">Forgot Password?</string>
     <string name="btnLogin_text">Login</string>
     <string name="btnRegister_text">Register</string>
+    <string name="btnPlaceOrder_text">Place Order</string>
 
     //Actual TextViews
     <string name="loginWelcome_text">Welcome Back</string>
@@ -40,6 +41,8 @@
     <string name="haveAccount_text">Already registered? Login here</string>
     <string name="tvHeading_text">Skip The Queue\nLet us serve you…</string>
     <string name="tvFirebaseName_text">Hello\u0020\u0020</string>
+    <string name="tvVerifyEmail">Please check the inbox of your provided email address to verify your account</string>
+    <string name="tvTotal_text">Total:</string>
 
     //Hints
     <string name="phoneNumber_hint">Phone Number</string>
@@ -62,6 +65,15 @@
 
     //Example TextViews
     <string name="tvUser_text">User</string>
+    <string name="bookISBN_text">Book ISBN</string>
+    <string name="bookTitle_text">Book Title</string>
+    <string name="bookAuthor_text">Book Author</string>
+    <string name="bookPrice_text">Book Price</string>
+    <string name="bookEdition_text">Book Edition</string>
+    <string name="bookPublisher_text">Book Publisher</string>
+    <string name="bookCondition_text">Book Condition</string>
+    <string name="bookDescription_text">Book Description</string>
+    <string name="verifyEmail_text">Verify Email</string>
 
     //OtherNavDrawerStuff
     <string name="drawerOpen">Open navigation drawer</string>
@@ -90,7 +102,8 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
-    <string name="bookName_text">Book Name</string>
     <string name="uploadBookInstructions_text">To upload your book, please add a photo of the book and enter all book details below:</string>
+
+
 
 </resources>

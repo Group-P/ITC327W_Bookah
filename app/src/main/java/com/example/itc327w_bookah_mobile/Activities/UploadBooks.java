@@ -33,7 +33,7 @@ public class UploadBooks extends AppCompatActivity {
 
     Button btnBrowse, btnUpload;
     //TextInputLayout bookAuthor, bookCondition, bookDescription, bookEdition, bookISBN, bookPublisher, bookTitle;
-    TextInputEditText et_bookISBN, et_bookTitle, et_bookAuthor, et_bookEdition, et_bookPublisher, et_bookCondition, et_bookDescription;
+    TextInputEditText et_bookISBN, et_bookTitle, et_bookAuthor, et_bookEdition, et_bookPublisher, et_bookCondition, et_bookDescription, et_bookPrice;
     ImageView imageView;
     Uri FilePathUri;
     StorageReference storageReference;
@@ -62,6 +62,7 @@ public class UploadBooks extends AppCompatActivity {
         et_bookPublisher = findViewById(R.id.et_bookPublisher);
         et_bookCondition = findViewById(R.id.et_bookCondition);
         et_bookDescription = findViewById(R.id.et_bookDescription);
+        et_bookPrice = findViewById(R.id.et_bookPrice);
 
         progressDialog = new ProgressDialog(UploadBooks.this);// context name as per your project name
 
@@ -132,11 +133,12 @@ public class UploadBooks extends AppCompatActivity {
                             String bookPublisher = et_bookPublisher.getText().toString().trim();
                             String bookCondition = et_bookCondition.getText().toString().trim();
                             String bookDescription = et_bookDescription.getText().toString().trim();
+                            String bookPrice = et_bookPrice.getText().toString().trim();
                             progressDialog.dismiss();
                             Toast.makeText(getApplicationContext(), "Book Uploaded Successfully ", Toast.LENGTH_LONG).show();
                             @SuppressWarnings("VisibleForTests")
                             Book bookUploadInfo = new Book(taskSnapshot.getUploadSessionUri().toString(),
-                                    bookISBN,bookTitle,bookAuthor,bookEdition,bookPublisher,bookCondition,bookDescription);
+                                    bookISBN,bookTitle,bookAuthor,bookEdition,bookPublisher,bookCondition,bookDescription,bookPrice);
                             String ImageUploadId = databaseReference.push().getKey();
                             assert ImageUploadId != null;
                             databaseReference.child(ImageUploadId).setValue(bookUploadInfo);

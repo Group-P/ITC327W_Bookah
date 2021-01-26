@@ -199,6 +199,23 @@
                         android:inputType="textShortMessage"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/bookPrice"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/ErrorText"
+                    android:layout_width="376dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:hint="Price ie: 150.00"
+                    app:endIconMode="clear_text"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_bookPrice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
                 <Button
                     android:id="@+id/btnBrowsePhoto"
                     android:layout_width="match_parent"

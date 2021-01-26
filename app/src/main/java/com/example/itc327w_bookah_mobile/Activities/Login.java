@@ -102,8 +102,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             case R.id.btnLogin:
 
                 //All the validation code
-                if (Common.isConnectedToInternet(getBaseContext()))
-                {
+                //if (Common.isConnectedToInternet(getBaseContext()))
+                //{
                     if (cb_StayLoggedIn.isChecked())
                     {
                         Paper.book().write(Common.USER_KEY, AppUtility.getInputText(et_loginEmail));
@@ -115,20 +115,18 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                             et_loginEmail, et_loginPassword))
                     {
                         userLogin();
-
                     }
-                }
-                else
+                //}
+               /* else
                 {
                     View toastView = getLayoutInflater().inflate(R.layout.toast, (ViewGroup) findViewById(R.id.toastLayout));
                     AppUtility.ShowToast(getApplicationContext(), "Unable to connect!\nPlease check your internet connection", toastView, 2);
-                }// end (Common.isConnectedToInternet(getBaseContext())) else
+                }// end (Common.isConnectedToInternet(getBaseContext())) else*/
 
                 break;
 
             case R.id.btnReset:
                 startActivity(new Intent(Login.this, ForgotPassword.class));
-                finish();
         }
     }
 
@@ -152,15 +150,14 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                                 finish();
                             }
                             else {
-                                user.sendEmailVerification();
-                                Toast.makeText(Login.this,
-                                        "Check your email to verify your account",
-                                        Toast.LENGTH_LONG).show();
+
+                                View toastView = getLayoutInflater().inflate(R.layout.toast, (ViewGroup) findViewById(R.id.toastLayout));
+                                AppUtility.ShowToast(getApplicationContext(), "Email not verified!\nPlease check email to verify account", toastView, 2);
                             }
                         } else {
 
                             View toastView = getLayoutInflater().inflate(R.layout.toast, (ViewGroup) findViewById(R.id.toastLayout));
-                            AppUtility.ShowToast(getApplicationContext(), "Credentials are incorrect!\nPlease register", toastView, 1);
+                            AppUtility.ShowToast(getApplicationContext(), "Credentials are incorrect!\nPlease register", toastView, 2);
                         }
 
                         // ...

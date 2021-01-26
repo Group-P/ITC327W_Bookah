@@ -2,12 +2,13 @@ package com.example.itc327w_bookah_mobile.Model;
 
 public class Book {
 
-    public String imageURL,isbn,title, author, edition, publisher, condition, description;
+    public String imageURL,isbn,title, author, edition, publisher, condition, description,price;
 
     public Book() {
     }
 
-    public Book(String imageURL,String isbn, String title, String author, String edition, String publisher,  String condition, String description) {
+    public Book(String imageURL,String isbn, String title, String author, String edition,
+                String publisher,  String condition, String description, String price) {
         this.imageURL = imageURL;
         this.isbn = isbn;
         this.title = title;
@@ -16,6 +17,15 @@ public class Book {
         this.publisher = publisher;
         this.condition = condition;
         this.description = description;
+        this.price = price;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
     }
 
     public String getImageURL() {

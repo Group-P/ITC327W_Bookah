@@ -100,14 +100,14 @@
                 android:id="@+id/btnReset"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_margin="2dp"
-                android:layout_weight="2"
+                android:layout_margin="8dp"
                 android:backgroundTint="@color/flamingo"
-                android:elevation="0dp"
                 android:text="@string/btnForgetPassword_text"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/capriola"
                 android:textColor="@color/white"
-                app:cornerRadius="10dp"/>
+                app:cornerRadius="12dp"/>
 
             <Button
                 android:id="@+id/btnLogin"
@@ -121,7 +121,7 @@
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                app:cornerRadius="8dp" />
+                app:cornerRadius="10dp" />
 
             <TextView
                 android:id="@+id/tvRegisterAccount"
